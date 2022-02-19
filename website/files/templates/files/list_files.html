@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+<div class="container justify-content-center">
+
+<h2 class="mt-4" >File list</h2>
+
+
+{% if not files %}
+
+<h3 class="text-center mt-4" >There is no file uploaded</h3>
+
+{% else %}
+
+
+{% for file in files %}
+
+<div class="card mb-4 w-50">
+    <div class="card-body">
+        <p> <h3>Filename: <span  class="fs-5 text-secondary" >{{file.file_name}}</span></h3> </p>
+        
+            <a href="{% url "download_file" file_id=file.id %}" class="btn btn-primary" >
+                Download
+            </a>  
+            
+            <a href="{% url "delete_file" file_id=file.id %}" class="btn btn-warning" >
+                Delete
+            </a>  
+    </div>
+</div>
+  {% endfor %}
+
+{% endif %}
+{% endblock %}
+</div>

@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+
+
+
+        
+        
+<div class="container w-60 mt-4">
+    <div class="card">
+        <div class="card-header">
+            Manage your files
+        </div>
+        <div class="card-body">
+            <h5 class="card-title mb-4">Choose from the menu options</h5>
+            <div class="mb-2">
+                <a href="{% url "upload_file" %}" class="btn btn-primary w-25" >upload file</a>
+            </div>        
+            <div class="mb-2" >
+                <a href="{% url "list_files" %}" class="btn btn-primary w-25 " >list files</a>    
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

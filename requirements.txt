@@ -1,0 +1,10 @@
+asgiref==3.5.0
+backports.zoneinfo==0.2.1
+Django==4.0.2
+sqlparse==0.4.2
+azure-common==1.1.27
+azure-core==1.21.1
+azure-identity==1.7.1
+azure-keyvault-secrets==4.3.0
+azure-storage-blob==12.9.0
+django-environ==0.8.1

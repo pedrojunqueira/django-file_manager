@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container w-50 mt-4">
+  <h2 class="mt-4">Upload File</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="input-group">
+      <input
+        type="file"
+        name="file"
+        class="form-control"
+        id="inputGroupFile04"
+        aria-describedby="inputGroupFileAddon04"
+        aria-label="Upload"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="submit"
+        id="inputGroupFileAddon04"
+      >
+        Upload
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+
+<!-- <div>
+  <input type="file" name="file" />
+  <p></p>
+  <button class="btn btn-primary" type="submit">Upload</button>
+</div> -->
