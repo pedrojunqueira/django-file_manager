@@ -31,35 +31,36 @@ def create_blob_client(file_name):
 
 
 def check_file_ext(path):
-    ext = Path(path).suffix
-    return ext in ALLOWED_EXTENTIONS
+    pass
+    # TODO 
+    # extract extention
+    # check if extention is in allowed extensions
+    # if yes return True
 
 
 def download_blob(file):
-    blob_client = create_blob_client(file)
-    if not blob_client.exists():
-        return
-    blob_content = blob_client.download_blob()
-    return blob_content
+    pass
+    # TODO
+    # instantiate blob client
+    # check if blob does not exist and return
+    # download blob contant in a variable and return
     
 
 def save_file_url_to_db(file_url):
-    new_file = models.File.objects.create(file_url=file_url)
-    new_file.save()
-    return new_file
+    pass
+    # TODO 
+    # create new file object in db and save blob irl
+    # return new file
 
 def upload_file_to_blob(file):
+    pass
+    # TODO
+    # create file name with prefix and extension
+    # store file content in a variable
+    # create BitesIO Object
+    # Instantiate blob client
+    # upload data to blob
+    # save url in DB
+    # return file Object
 
-    if not check_file_ext(file.name):
-        return
-
-    file_prefix = uuid.uuid4().hex
-    ext = Path(file.name).suffix
-    file_name = f"{file_prefix}{ext}"
-    file_content = file.read()
-    file_io = BytesIO(file_content)
-    blob_client = create_blob_client(file_name=file_name)
-    blob_client.upload_blob(data=file_io)
-    file_object = save_file_url_to_db(blob_client.url)
-
-    return file_object
+    # later add check file extension

@@ -15,43 +15,44 @@ def index(request):
     return render(request, "files/index.html", {})
 
 def upload_file(request):
-    if request.method == 'POST' and request.FILES['file']:
-        file = request.FILES['file']
-        ext = Path(file.name).suffix
-        new_file = upload_file_to_blob(file)
-        if not new_file:
-            messages.warning(request, f"{ext} not allowed only accept {', '.join(ext for ext in ALLOWED_EXTENTIONS)} ")
-            return render(request, "files/upload_file.html", {}) 
-        new_file.file_name = file.name
-        new_file.file_extention = ext
-        new_file.save()
-        messages.success(request, f"{file.name} was successfully uploaded")
-        return render(request, "files/upload_file.html", {}) 
+    return render(request, "files/upload_file.html",{})
+    # TODO
+    # check request method and if Files in POST request
+    # store file in variable
+    # store extention in variable
+    # upload file to blob and save return in a variable
+    # save file metadata in DB ie (name, exttention)
+    # broadcast success message
+    # render template
 
-    return render(request, "files/upload_file.html", {})
+    # TODO Later add check extension
 
 def list_files(request):
-    files = models.File.objects.filter(deleted=0)
-    context = {"files": files}
-    return render(request, "files/list_files.html", context=context)
+    return render(request, "files/list_files.html",{})
+    # TODO 
+    # assign not deleted files in a variable
+    # add to request context
+    # render page
 
 def download_file(request, file_id):
-    file = models.File.objects.get(pk=file_id)
-    file_name = file.file_name
-    file_type, _ = mimetypes.guess_type(file_name)
-    url = file.file_url
-    blob_name = url.split("/")[-1]
-    blob_content = download_blob(blob_name)
-    if blob_content:
-        response = HttpResponse(blob_content.readall(), content_type=file_type)
-        response['Content-Disposition'] = f'attachment; filename={file_name}'
-        messages.success(request, f"{file_name} was successfully downloaded")
-        return response
-    return Http404
+    return redirect("list_files")
+    ## TODO
+    ## load file metadata from DB (get)
+    # save file name in a variable
+    # check file type with mimetypes.guess_type
+    # assign Url to variable
+    # strip blob name from url
+    # save blob content in a variable
+    # create response instance and store data
+    # return as attachment and assign file name
+    # if not file content found return 404
 
 
 def delete_file(request,file_id):
-    file = models.File.objects.get(pk=file_id)
-    file.deleted = 1
-    file.save()
+    pass
+    # TODO
+    # load file in a variable from DB
+    # update deleted to  1
+    # save
+    # redirect to list_files
     return redirect("list_files")
