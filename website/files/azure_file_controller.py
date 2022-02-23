@@ -31,11 +31,9 @@ def create_blob_client(file_name):
 
 
 def check_file_ext(path):
-    pass
-    # TODO 
-    # extract extention
-    # check if extention is in allowed extensions
-    # if yes return True
+    ext = Path(path).suffix
+    return ext in ALLOWED_EXTENTIONS
+
 
 
 def download_blob(file):
@@ -47,10 +45,9 @@ def download_blob(file):
     
 
 def save_file_url_to_db(file_url):
-    pass
-    # TODO 
-    # create new file object in db and save blob irl
-    # return new file
+    new_file = models.File.objects.create(file_url=file_url)
+    new_file.save()
+    return new_file
 
 def upload_file_to_blob(file):
     pass
